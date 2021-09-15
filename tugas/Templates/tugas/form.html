@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Tugas App</title>
+
+    <style>
+      body {
+        padding:10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Daftar Tugas Siswa </h1>
+
+      <div>
+        <a href="{% url 'index' %}" class="btn btn-success">Back to List</a>
+      </div>
+
+      <br>
+
+      <div>
+        <!-- meload package untuk merender form field -->
+        {% load widget_tweaks %}
+      
+        <form method="post">
+        <!-- menambahkan csrf field untuk keamanan form -->
+          {% csrf_token %}
+
+        <label for="nama_siswa">Nama Siswa</label></br>
+        <select class="form-control form-control-sm" name="nama_siswa">
+        {% for siswa in siswa %}
+          <option value="{{ siswa.name }}">{{ siswa.name }}</option>
+        {% endfor %}
+        </select>
+
+        <label for="pelajaran">Mata pelajaran</label></br>
+        <select class="form-control form-control-sm" name="pelajaran">
+        {% for mapel in mapel %}
+          <option value="{{ mapel.pelajaran }}">{{ mapel.pelajaran}}</option>
+        {% endfor %}
+        </select>
+
+        <label for="tugas">Tugas Siswa</label></br>
+        <select class="form-control form-control-sm" name="tugas">
+        {% for todo in todo %}
+          <option value="{{ todo.tugas }}">{{ todo.tugas}}</option>
+        {% endfor %}
+        </select>
+
+          <button type="submit" class="btn btn-primary"> Submit</button>
+        </form>
+      </div>
+  </div>
+ 
+  </body>
+</html>

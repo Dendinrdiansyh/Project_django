@@ -1,0 +1,35 @@
+{% extends "akun/base.html" %}
+{% block body_block %}<div class="container">
+<a class="nav navbar-link" href="{% url 'admin:index' %}">Admin</a><br>
+          {# tambahkan beberapa logika untuk dikembangkan#}
+  <a class="nav navbar-link" href="{% url 'akun:user_login' %}">Logout</a>
+  <div class="jumbotron">
+  {% if user.is_authenticated %}
+  
+    
+    {% if user.is_authenticated %}
+    <h1>Selamat datang dihalaman admin!</h1>
+        <h2>Hello {{ user.username }}</h2><br>
+        <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <ul class="nav navbar-nav">{# Django landing page disini#}
+          
+          {% else %}
+          {% endif %}</ul>
+      </div>
+    </nav>
+    {% else %}
+    <h1>Selamat datang !</h1>
+        <h2>Silahkan Login atau Register.</h2>
+    {% endif %}
+  </div>
+    <a class="btn btn-primary" href="{% url 'siswa:index' %}">Siswa APP</a>
+          <a class="btn btn-primary" href="{% url 'mapel:index' %}">Mapel APP</a>
+          <a class="btn btn-primary" href="{% url 'index' %}">Tugas APP</a>
+          <a class="btn btn-primary" href="{% url 'todo:index' %}">Todo APP</a>
+          <a class="btn btn-primary" href="{% url 'guru:index' %}">Guru APP</a>
+          
+</div>
+  
+
+{% endblock %}

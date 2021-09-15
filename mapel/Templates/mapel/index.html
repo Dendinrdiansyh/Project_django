@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Mapel App</title>
+
+    <style>
+      body {
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Daftar Mapel</h1>
+      <div>
+{% if messages %}
+
+  	{% for message in messages %}
+  	<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      		<span aria-hidden="true">&times;</span>
+    	</button>
+      	{{ message | safe }}
+  	</div>
+  	{% endfor %}
+
+{% endif %}
+      <div>
+        <a href="{% url 'mapel:create' %}" class="btn btn-success">Tambah Baru</a>
+        <a href="{% url 'akun:home' %}" class="btn btn-primary">Back</a>
+      </div>
+
+      <br>
+
+      <table class="table table-bordered table-striped">
+          <thead>
+              <tr>
+                  <th width="5%">ID</th>
+                  <th width="20%">Nama Guru</th>
+                  <th width="45%">Mata Plejaran</th>
+                  <th width="5%">Jam-masuk</th>
+                  <th width="20%">Aksi</th>
+              </tr>
+          </thead>
+          <tbody>
+            <!-- daftar task-->
+            {% if mapel %}
+              {% for mapel in mapel %}
+              <tr>
+                  <td>{{ mapel.id }}</td>
+                  <td>{{ mapel.nama_guru }}</td>
+                  <td>{{ mapel.pelajaran }}</td>
+                  <td>{{ mapel.jam_pelajaran}}</td>
+                  <td>
+                      <a href="{% url 'mapel:detail' mapel.id %}" class="btn btn-warning btn-sm">detail</a>
+                      <a href="{% url 'mapel:update' mapel.id %}" class="btn btn-primary btn-sm">ubah</a>
+                      <a href="{% url 'mapel:delete' mapel.id %}" class="btn btn-danger btn-sm">hapus</a>
+                  </td>
+              </tr>
+              {% endfor %}
+            {% else %}
+              <tr>
+                <td colspan="5">Data tidak ditemukan.</td>
+              </tr>
+            {% endif %}
+          </tbody>
+      </table>
+  </div>
+ 
+  </body>
+</html>
